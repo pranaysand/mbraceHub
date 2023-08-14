@@ -2,8 +2,10 @@ package com.mbraceHub.controller;
 
 import com.mbraceHub.hibernateSpecs.Availability;
 import com.mbraceHub.hibernateSpecs.Institutions;
+import com.mbraceHub.hibernateSpecs.Meals;
 import com.mbraceHub.hibernateSpecs.InstitutionsRepository;
 import com.mbraceHub.hibernateSpecs.AvailabilityRepository;
+import com.mbraceHub.hibernateSpecs.MealsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,10 +26,26 @@ public class Controller {
 
 	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
-	@RequestMapping(value = "/meals", method = RequestMethod.GET)
-	public @ResponseBody String getMealsList() {
-		logger.info("Start getDummyEmployee");
-		return "Test";
+	// @RequestMapping(value = "/meals", method = RequestMethod.GET)
+	// public @ResponseBody String getMealsList() {
+	// logger.info("Start getDummyEmployee");
+	// return "Test";
+
+	// List<Institutions> test = InstitutionsRepository.findAll();
+	// System.out.println("test");
+	// System.out.println(test.toString());
+	// return InstitutionsRepository.findAll();
+	// }
+
+	@Autowired
+	private MealsRepository MealsRepository;
+
+	@GetMapping("/meals")
+	public List<Meals> getMeals() {
+		List<Meals> test = MealsRepository.findAll();
+		System.out.println("test");
+		System.out.println(test.toString());
+		return MealsRepository.findAll();
 	}
 
 	@Autowired
